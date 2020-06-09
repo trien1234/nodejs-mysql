@@ -1,0 +1,150 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+            <h3 class="content-header-title mb-0">Hợp đồng</h3>
+            <div class="row breadcrumbs-top">
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">
+                                Admin
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/building/">
+                                &nbsp;hợp đồng
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        </div>
+    <form class="form" id="form_buidling">
+                <div class="form-body">
+                     <div class="row">                                      
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="RepresentativeName">Tên người đại diện</label>
+                                <input type="text" id="RepresentativeName" class="form-control border-primary" name="RepresentativeName" required="required">
+                            </div>
+                        </div> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="RepresentativeTel">Số điện thoại</label>
+                                <input type="text" id="RepresentativeTel" class="form-control border-primary" name="RepresentativeTel" required="required">
+                            </div>
+                        </div> 
+                                                                                                          
+                    </div>  
+
+                    <div class="row">      
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="HouseId">Căn hộ</label>
+                                <select class="form-control" name="HouseId" id="HouseId">                                  
+                                </select>
+                            </div>
+                        </div>  
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ServicePrice">Giá dịch vụ</label>
+                                <input type="number" id="ServicePrice" class="form-control border-primary" name="ServicePrice" required="required">
+                            </div>
+                        </div>                                                                                                                                         
+                    </div>   
+
+                    <div class="row">                                      
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="MotobikeParkPrice">Giá gửi xe máy</label>
+                                <input type="number" id="MotobikeParkPrice" class="form-control border-primary" name="MotobikeParkPrice" required="required">
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="BikeParkPrice">Giá gửi xe đạp</label>
+                                <input type="number" id="BikeParkPrice" class="form-control border-primary" name="BikeParkPrice " >
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CarParkPrice">Giá gửi xe hơi</label>
+                                <input type="number"  id="CarParkPrice" class="form-control border-primary" name="CarParkPrice" >
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Block">Ngày nộp hóa đơn</label>
+                                <select name="BillDateRange" class="form-control border-primary" id="BillDateRange">
+                                    <option value="{{CONSTANT.FIRST}}">Ngày 1 đầu tháng</option>
+                                    <option value="{{CONSTANT.SECOND}}">Ngày 5 đầu tháng</option>
+                                </select>
+                            </div>
+                        </div> 
+                                                                                                                                              
+                    </div>      
+                    <div class="row">                                      
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ElectricBill">Giá điện</label>
+                                <input type="number" id="ElectricBill" class="form-control border-primary" name="ElectricBill" required="required">
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="FirstElNum">Số điện đầu</label>
+                                <input type="number" id="FirstElNum" class="form-control border-primary" name="FirstElNum" required="required">
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="WaterPriceType">Giá nước</label>
+                                <select name="WaterPriceType" class="form-control border-primary" id="WaterPriceType">
+                                    <option value="{{CONSTANTWATER.M3}}">Giá nước theo khối</option>
+                                    <option value="{{CONSTANTWATER.PERSON}}">Giá nước theo đầu người</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="FirstWarNum">Số nước đầu</label>
+                                <input type="number" id="FirstWarNum" class="form-control border-primary" name="FirstWarNum" required="required">
+                            </div>
+                        </div>                                                                                                        
+                    </div>  
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="ChecknDate">Ngày Vào</label>
+                                <input type="date" id="CheckinDate" class="form-control border-primary"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="CheckoutDate">Ngày Ra</label>
+                                <input type="date" id="CheckoutDate" class="form-control border-primary"></input>
+                            </div>
+                        </div>  
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="RentalFee">Giá thuê</label>
+                                <input type="number" id="RentalFee" class="form-control border-primary" name="RentalFee" >
+                            </div>
+                        </div>  
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DepositMoney">Tiền đặt cọc</label>
+                                <input type="number" id="DepositMoney" class="form-control border-primary" name="DepositMoney" >
+                            </div>
+                        </div>                                                                                
+                    </div>                                             
+                    <button id="btn_addcontract" type="button" class="btn btn-primary btnSaveContract">
+                        <i class="fa fa-check-square"></i> Lưu
+                    </button>
+                </div>                  
+            </form>
+        </div>
+    </div>

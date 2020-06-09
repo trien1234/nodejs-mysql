@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../assets/fonts/OpenSans-Regular.ttf');
+}
+.view-images {
+    cursor: pointer;
+}
+.review-desc {
+    position: relative;
+    cursor: pointer;
+}
+
+.review-desc-hidden {
+    overflow: hidden;
+    max-height: 100px;
+}
+
+.overlay-desc {
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    opacity: 0.2;
+    position: absolute;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.overlay-desc-text {
+    color: white;
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    z-index: 10;
+    cursor: pointer;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .breadcrumb, a, p, div {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+#pie-chart {
+    width: 300px !important;
+    height: 200px !important;
+    margin: auto;
+}
+
+.highcharts-background {
+    fill: transparent !important;
+}
+
+.chart-tooltip .chart-tooltip-name {
+    display: block;
+    font-weight: bold;
+}
+.chart-tooltip .chart-tooltip-value {
+    display: block;
+}
+
+.chart-tooltip .chart-tooltip-value i {
+    padding-right: 10px;
+    color: '#15AABF' !important;
+}
+
+.delete-review {
+    cursor: pointer;
+    padding: 10px;
+    color: #F55555;
+    font-size: 20px
+}
+.edit-user {
+    cursor: pointer;
+    padding: 10px;
+    color: #12b886;
+    font-size: 20px
+}
+
+.not-verify {
+    margin-top: 5px;
+}
+
+.fameFactor, .verified {
+    display: none;
+    margin-bottom: 5px;
+}
+
+.video-control{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

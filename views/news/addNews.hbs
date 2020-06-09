@@ -1,0 +1,93 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+                <h3 class="content-header-title mb-0">News</h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    Admin
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/user/">
+                                    &nbsp;news
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if message}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {{/if}}
+        <div class="content-body">
+            <div class="card">
+                <div class="card-content collapse show">
+                    <div class="card-body">
+                        <form class="form" id="form_user" enctype="multipart/form-data" method="post" action="/cms/createNews">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Title">Tiêu đề</label>
+                                            <input type="text" id="Title" class="form-control border-primary" name="Title" required="required">
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Image">Ảnh</label>
+                                            <input type="file" id="Image" class="form-control border-primary" name="Image" accept="image/*">
+                                        </div>
+                                    </div>                                                            
+                                </div>                           
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="Content">Nội dung</label>
+                                            <textarea id="Content" name="Content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                            <label for="IsFeatured">Nổi bật</label>
+                                            <select id="IsFeatured" name="IsFeatured" class="form-control border-primary">
+                                                <option value="0">No</option>
+                                                <option value="1">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-check-square"></i> Save
+                                </button>
+                            </div>                  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+<script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'Content', {
+        entities: false,
+        basicEntities: false,
+        entities_greek: false,
+        entities_latin: false,
+        htmlDecodeOutput:true,
+        enterMode : CKEDITOR.ENTER_P,
+        enterMode: CKEDITOR.ENTER_BR, 
+    });
+</script>       

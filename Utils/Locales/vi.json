@@ -1,0 +1,66 @@
+{
+	"Token": {
+		"InvalidToken": "Mã token không hợp lệ"
+	},
+	"General": {
+		"Success": {
+			"Create": "Tạo bản ghi thành công",
+			"Update": "Sửa bản ghi thành công",
+			"Delete": "Xóa bản ghi thành công"
+		},
+		"Fail": {
+			"NotFound": "Không tồn tại bản ghi này",
+			"Opps": "Opps! Đã có lỗi xảy ra. Vui lòng thử lại",
+			"Exist": "Bản ghi đã tồn tại"
+		}
+	},
+	"Login": {
+		"Fail": {
+			"Login": "Sai tài khoản hoặc mật khẩu."
+		}
+	},
+	"User": {
+		"Success": {
+			"Logout": "Đăng xuất thành công.",
+			"Avatar": "Upload avatar thành công",
+			"Update": "Chỉnh sửa thông tin người dùng thành công"
+		},
+		"Fail": {
+			"PasswordNotMatch": "Mật khẩu không đúng",
+			"NewPasswordNotMatchConfirmPassword": "Mật khẩu mới không giống nhau",
+			"EmailExist": "Đã tồn tại email này",
+			"TelExist": "Đã tồn tại số điện thoại này"
+		}
+	},
+	"Resident": {
+		"Fail": {
+			"Exist": "Loại sự cố đã tồn tại"
+		},
+		"New": "Xảy ra sự cố",
+		"NeedFixer": "Thông báo báo giá sự cố"
+	},
+	"Contract": {
+		"Fail": {
+			"Overlap": "Cư dân đang có một hợp đồng còn hiệu lực trong khoảng thời gian này",
+			"CheckoutBeforeCheckin": "Ngày kết thúc trước ngày bắt đầu",
+			"ExpiredContract": "Hợp đồng đã quá hạn",
+			"ExtendMissingDates": "Thời gian bắt đầu, thời gian kết thúc là bắt buộc"
+		}
+	},
+	"Tenant": {
+		"Fail": {
+			"ActiveRecordExist": "Cư dân này hiện đang ở một phòng khác"
+		}
+	},
+	"Vehicle": {
+		"Fail": {
+			"AlreadyExist": "Đã tồn tại xe có biển số này"
+		}
+	},
+	"Pricing": {
+		"Fail": {
+			"ChoseOneBefore": "Bạn đã chấp nhận một báo giá trước đó",
+			"ChoseThisBefore": "Bạn đã chấp nhận báo giá này trước đó"
+		}
+	}
+}

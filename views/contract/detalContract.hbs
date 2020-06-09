@@ -1,0 +1,258 @@
+<style>
+    .form-body{
+        border: 1px solid #a09e9e;
+        padding: 25px;
+    }
+    .text-sm{
+        font-size: 12px;
+    }
+    .app-content{
+    	background: rgba(140, 140, 140, 0.02)
+    }
+    .text_h5{
+    	font-size: 20px;
+    	font-weight: 600;
+    	color: #036969;
+    	font-family: Tahoma !important;
+    }
+    .text_h2{
+    	font-size: 27px;
+    	font-weight: 600;
+    	color: #960303;
+    	font-family: Tahoma !important;
+    	text-transform: uppercase;
+    }
+    .text-custom{
+    	font-size: 15px;
+    	font-weight: 600;
+    	color: #036969;
+    	font-family: Tahoma !important;
+    }
+    @media print {
+	  	body * {
+	    	visibility: hidden;
+	  	}
+	  	#sform_billing, #form_billing * {
+	    	visibility: visible;
+	  	}
+	  	#form_billing {
+	    	position: absolute;
+	    	left: 0;
+	    	top: 0;
+	  	}
+	}
+	.table th, .table td {
+		padding: 6px 16px !important;
+	}
+	ol {
+		margin-bottom: 0px !important
+	}
+	small {
+		font-size: 13px !important;
+	}
+</style>
+<div class="app-content content">
+    <div class="content-wrapper">
+    	<form class="form" id="form_billing">
+	        <div class="row mb-1">
+	        	<div class="col-md-4">
+	        		<img class="float-right p-0" height="80" src="/public/images/logo.png" alt="3SHome">
+	        	</div>
+	            <div class="col-md-8 float-left p-0">
+	                <h5 class="text_h5">{{setting.Name}}</h5>
+	                <span class="text-sm">
+	                    <b>Địa chỉ: </b><i>{{setting.Address}}</i></br>
+	                    <b>Email: </b><i>{{setting.Email}}</i></br>
+	                    <b>Hotline: </b><i>{{setting.Phone}}</i></br>
+	                </span>
+	            </div>
+	        </div>
+	        <div class="row">
+	        	<div class="col-md-12 text-center">
+	        		<h2 class="text_h2">Chi tiết hợp đồng
+	        		</h2>
+	        	</div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-12 text-center mb-1">
+	                {{!-- <span class="text-sm"><b>Ghi chú:</b> <i>Tiền phòng tính từ ngày  đến </i></span> --}}
+	            </div> 
+	        </div>
+	        <div class="form-body">
+	        	<div class="row mb-2"> 
+                    <div class="col-md-6">
+	        			<b>Khách Hàng: </b>{{detailContract.RepresentativeName}}</br>
+	        		</div>
+	        		<div class="col-md-6">
+	        			<b>Tel: </b>{{detailContract.RepresentativeTel}}</br>
+	        		</div>       		
+	        		<div class="col-md-6">
+	        			<b>Địa chỉ: </b> Căn hộ {{building.Name}} - Toà nhà {{building.Building.Name}}
+	        		</div>
+	        		
+                    <div class="col-md-6">
+	        			<b>Thời gian thuê:</b> Từ ngày {{CheckinDate}} - đến ngày {{CheckoutDate}}
+	        		</div>
+	        	</div>
+	        	<div class="row mb-2">
+	        		<table class="table table-bordered">
+	        			<thead>
+	        				<tr>
+	        					<th width="1">STT</th>
+	        					<th>Dịch vụ</th>
+	        					<th>Đơn giá(VNĐ)</th>
+	        				</tr>
+	        			</thead>
+	        			<tbody>
+	        				<tr>
+	        					<td>
+	        						1
+	        					</td>
+	        					<td>
+	        						<b>Giá dịch vụ</b></br>
+	        					</td>
+	        					<td>   
+                                    {{detailContract.ServicePrice}}    						
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						2
+	        					</td>
+	        					<td>
+	        						<b>Giá gửi xe máy</b></br>
+	        					</td>
+	        					<td>
+	        						{{detailContract.MotobikeParkPrice}} 
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						3
+	        					</td>
+	        					<td>
+	        						<b>Giá gửi xe đạp</b></br>
+	        					</td>
+	        					<td>
+	        						{{detailContract.BikeParkPrice}} 
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						4
+	        					</td>
+	        					<td>
+	        						<b>Giá gửi xe hơi</b></br>
+	        						     						
+	        					</td>
+                                    
+	        					<td>
+	        				        {{detailContract.CarParkPrice}} 
+	        					</td>
+	        				</tr>        				
+	        				<tr>
+	        					<td>
+	        						5
+	        					</td>
+	        					<td>
+	        						<b>Giá điện</b>
+                                    <small>
+	        						    <i>(Số điện đầu {{detailContract.FirstElNum}}) </i>
+	        						</small>
+	        					</td>
+	        					<td>
+                                    {{detailContract.ElectricBill}} 
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						6
+	        					</td>
+	        					<td>
+	        						<b>Giá nước</b>
+                                    <small>
+	        						    <i> (Số nước đầu {{detailContract.FirstWarNum}} )</i>
+	        						</small>                                 
+	        					</td>
+	        					<td>
+	        						 {{#eq detailContract.WaterPriceType 1}}Giá nước theo khối{{/eq}}
+                                    {{#eq detailContract.WaterPriceType 2}}Giá nước theo đầu người{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						7
+	        					</td>
+	        					<td>
+	        						<b>Giá thuê</b>
+	        					</td>
+	        					<td>
+	        						{{detailContract.RentalFee}} 
+	        					</td>
+
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						8
+	        					</td>
+	        					<td>
+	        						<b>Tiền đặt cọc</b>
+	        					</td>
+	        					<td>
+	        						{{detailContract.DepositMoney}} 
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						9
+	        					</td>
+	        					<td>
+	        						<b>Ngày nộp hóa đơn</b>
+	        					</td>
+	        					<td>
+	        						{{#eq detailContract.BillDateRange 1}} Ngày 1 đầu tháng{{/eq}}
+                                    {{#eq detailContract.BillDateRange 2}} Ngày 5 đầu tháng{{/eq}}
+	        					</td>
+	        				</tr>
+	        				{{!-- <tr>
+	        					<td>
+	        						10
+	        					</td>
+	        					<td colspan="2" class="text-center">
+	        						<h2 class="text_h5">Tổng cộng</h2>
+	        					</td>
+	        				</tr> --}}
+	        			</tbody>
+	        		</table>
+	    			{{!-- <div class="col-md-6">
+	    				<small>
+	        				<b>Lưu ý:</b><i> </i>
+	        			</small>
+	    			</div>
+	    			<div class="col-md-6">
+	    				<span>
+	        				<b>THỜI HẠN NỘP TIỀN:</b> Quý khách vui lòng nộp trước ngày <i></i>
+	        			</span>
+	    			</div> --}}
+	        	</div>
+	        </div>                  
+    	</form>
+    	<div class="row">
+	    	<div class="col-md-12 mt-2">
+	    		<button id="" type="button" class="btn btn-md btn-danger btnCancelBill">
+			        <i class="fa fa-undo"></i><a style="color: aliceblue;" href="/cms/listContract">Trở lại</a>  
+			    </button>
+			    <button id="" type="button" onclick="myFunction()" class="btn btn-md btn-success btnPrintBill">
+			        <i class="fa fa-save"></i> In
+			    </button>
+	    	</div>
+	    </div>
+    </div>
+    
+</div>
+
+<script>
+	function myFunction() {
+  		window.print();
+	}
+</script>

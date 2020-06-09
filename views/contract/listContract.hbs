@@ -1,0 +1,225 @@
+
+<div class="app-content content">
+    <div class="content-wrapper">
+    	<div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+                <h3 class="content-header-title mb-0">Hợp đồng</h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    Admin
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/contract/">
+                                    &nbsp;hợp đồng
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+		{{!-- <div class="content-body"> --}}
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-colored-form-control">Bảng hợp đồng</h4>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <table id="table-contract" class="table table-striped table-bordered dom-jQuery-events">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        STT
+                                    </th>
+                                    <th>
+                                        Tên người đại diện
+                                    </th>
+                                    <th>
+                                        Số điện thoại
+                                    </th>
+                                    <th>
+                                        Căn hộ
+                                    </th>
+                                    <th>
+                                        Ngày vào
+                                    </th>
+                                    <th>
+                                        Ngày ra
+                                    </th>                                 
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+		</div>
+{{!-- modal edit --}}
+        <div class="modal modalEdit" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="form-section"><i class="ft-info"></i> Cập nhật thông tin hợp đồng<code><b id="nameContract"></b></code></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <d class="form">
+                            <div class="form-body">                                    
+                                <div class="row">                                      
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="RepresentativeName">Tên người đại diện</label>
+                                            <input type="text" id="RepresentativeName" class="form-control border-primary" name="RepresentativeName" required="required">
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="RepresentativeTel">Số điện thoại</label>
+                                            <input type="text" id="RepresentativeTel" class="form-control border-primary" name="RepresentativeTel" required="required">
+                                        </div>
+                                    </div>                                                                                                                    
+                                </div>  
+
+                                <div class="row">      
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="HouseId">Căn hộ</label>
+                                            <select disabled="disabled" class="form-control" name="HouseId" id="HouseId">
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="BillDateRange">Ngày nộp hóa đơn</label>
+                                            <select name="BillDateRange" class="form-control border-primary" id="BillDateRangeContract">
+                                                <option id="BillDateRangeEditFirst" value="{{CONSTANT.FIRST}}">Ngày 1 đầu tháng</option>
+                                                <option id="BillDateRangeEditSecond" value="{{CONSTANT.SECOND}}">Ngày 5 đầu tháng</option>
+                                            </select>
+                                        </div>
+                                    </div>                                                                                                                                                     
+                                </div>   
+
+                                <div class="row">                                      
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="MotobikeParkPrice">Giá gửi xe máy</label><!-- check trung-->
+                                            <input type="number" id="MotobikeParkPrice" class="form-control border-primary" name="MotobikeParkPrice" required="required">
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="BikeParkPrice">Giá gửi xe đạp</label>
+                                            <input type="number" id="BikeParkPrice" class="form-control border-primary" name="BikeParkPrice " >
+                                        </div>
+                                    </div>
+                                                                                                
+                                </div>   
+
+                                <div class="row">  
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="CarParkPrice">Giá gửi xe hơi</label>
+                                            <input type="number"  id="CarParkPrice" class="form-control border-primary" name="CarParkPrice" >
+                                        </div>
+                                    </div>                                     
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ServicePrice">Giá dịch vụ</label>
+                                            <input type="number" id="ServicePrice" class="form-control border-primary" name="ServicePrice" required="required">
+                                        </div>
+                                    </div>                                                                                                                                                                        
+                                </div>      
+                                <div class="row">                                      
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ElectricBill">Giá điện</label>
+                                            <input type="number" id="ElectricBill" class="form-control border-primary" name="ElectricBill" required="required">
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="WaterPriceType">Giá nước</label>
+                                            <select name="WaterPriceType" class="form-control border-primary" id="WaterPriceType">
+                                                <option value="{{CONSTANTWATER.M3}}">Giá nước theo khối</option>
+                                                <option value="{{CONSTANTWATER.PERSON}}">Giá nước theo đầu người</option>
+                                            </select>
+                                        </div>
+                                    </div> 
+                                                                                                
+                                </div>  
+                                <div class="row">                                      
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="RentalFee">Giá thuê</label>
+                                            <input type="number" id="RentalFee" class="form-control border-primary" name="RentalFee" >
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="DepositMoney">Tiền đặt cọc</label>
+                                            <input type="number" id="DepositMoney" class="form-control border-primary" name="DepositMoney" >
+                                        </div>
+                                    </div>  
+                                                                                                
+                                </div>                                                                                                
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary save-contract-data">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>		
+
+{{!-- modal status --}}
+
+        <div class="modal modal_status " id="status" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="form-section"><i class="ft-info"></i> Cập nhật trạng thái hợp đồng<code><b id="nameContract"></b></code></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <d class="form">
+                            <div class="form-body">                                                                      
+                                <div class="row">      
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="HouseId">Trạng thái</label>
+                                            <select class="form-control" name="Status" id="Status">
+                                                <option value="2">Trống</option>
+                                                <option value="3">Cọc</option>
+                                                <option value="4">Đang ở</option>
+                                                <option value="5">Sắp hết hạn</option>
+                                                <option value="6">Gia hạn</option>
+                                                <option value="7">Thanh lý</option>
+                                            </select>
+                                        </div>
+                                    </div>                                                                                                                                                     
+                                </div>                                                                                                
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary save-edit-status-contract-data">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>			
+	</div>
+</div>

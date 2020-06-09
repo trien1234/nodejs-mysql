@@ -1,0 +1,42 @@
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const StaffRating = sequelize.define('StaffRating', {
+    Id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    LifeSkill: DataTypes.INTEGER,
+    WorkingSkill: DataTypes.INTEGER,
+    Feedback: DataTypes.STRING,
+    UserId: {
+      type: DataTypes.INTEGER,
+      primaryKey: false,
+      references: {
+        model: "User",
+        key: "Id"
+      }
+    },
+    CreatedDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
+    UpdatedDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    }
+  }, {
+    timestamps: false,
+    freezeTableName: true,
+    tableName: 'StaffRating',
+    charset: 'utf8',
+    dialectOptions: {
+    collate: 'utf8_general_ci'
+    }
+  });
+  StaffRating.associate = function(models) {
+    // associations can be defined here
+  };
+  return StaffRating;
+};

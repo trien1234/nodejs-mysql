@@ -1,0 +1,501 @@
+<style>
+    .form-body{
+        border: 1px solid #a09e9e;
+        padding: 38px;
+    }
+    .text-sm{
+        font-size: 12px;
+    }
+</style>
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+            <h3 class="content-header-title mb-0">Tạo mới hoá đơn căn hộ <code>{{house.house.Name}}</code></h3>
+            <div class="row breadcrumbs-top">
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">
+                                Admin
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/managerCreateBilling/">
+                                &nbsp;hoá đơn
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        </div>
+    <form class="form" id="form_buidling">
+        <h4 class="form-section"></h4>
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <h5>Công ty cổ phần BĐS 3SHomes</h5>
+                <span class="text-sm">
+                    <b>Địa chỉ: </b><i>87/3, Nguyễn Sỹ Sách, phường 15, Tân Bình, Tp.HCM</i></br>
+                    <b>Hotline: </b><i>0909.543.111</i></br>
+                </span>
+            </div>
+            <div class="col-md-6">
+                <div class="pull-right">
+                    <h5><b>Hoá Đơn {{house.type}}</b></h5>
+                    <span class="text-sm">
+                        <b>Mã Phòng:</b><i> {{house.house.Code}}</i></br>
+                        <b>Khách Hàng: </b><i>{{house.resident.FullName}}</i></br>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="ResidentId" value="{{house.resident.Id}}">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {{#eq house.billType 1}}
+                    <span class="text-sm"><b>Ghi chú:</b> <i>Tiền phòng tính từ ngày {{house.contract.CheckinDate}} đến {{house.contract.nextMonthDate}}</i></span>
+                {{/eq}}
+                {{#eq house.billType 2}}
+                    <span class="text-sm"><b>Ghi chú:</b> <i>Tiền phòng tính từ ngày {{house.contract.nextDayDate}} đến {{house.contract.nextMonthDate}}</i></span>
+                {{/eq}}
+                {{#eq house.billType 3}}
+                    <span class="text-sm"><b>Ghi chú:</b> <i>Tiền phòng tính từ ngày {{house.contract.CheckinDate}}</i></span>
+                {{/eq}}
+
+            </div> 
+        </div>
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="BillBuildingId">Tòa nhà</label>
+                        <input type="hidden" class="form-control" name="BillBuildingId" value="{{house.house.Building.Id}}" id="BillBuildingId" />
+                        <input type="text" disabled="disabled" class="form-control" name="BillBuildingName" value="{{house.house.Building.Name}}"id="BillBuildingName" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="BillHouseId">Căn hộ</label>
+                        <input type="hidden" class="form-control" name="BillHouseId" value="{{house.house.Id}}" id="BillHouseId" />
+                        <input type="text" disabled="disabled" class="form-control" name="HouseName" value="{{house.house.Name}}" id="HouseName" />
+                    </div>
+                </div>                                                           
+            </div>
+            {{!-- Hoá đơn hợp đồng mới --}}
+            {{#eq house.billType 1}}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="DepositMoney">Tiền cọc</label> <code id="text_depoMoney"></code>
+                            <input type="number" id="DepositMoney" class="form-control border-primary" value="{{house.contract.DepositMoney}}" name="DepositMoney">
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="RentalFee">Tiền phòng</label>
+                            <input type="number" disabled="disabled" id="RentalFee" class="form-control border-primary" value="{{toFixed house.contract.HouseFee 0}}" name="RentalFee">
+                            <p><code>Tiền phòng = {{house.billDate}} ngày x ({{house.contract.RentalFee}} / 30) VNĐ</code></p>
+                        </div>
+                    </div>                                                                                              
+                </div>
+                <input type="hidden" id="DateRange" value="{{house.billDate}}">
+                <input type="hidden" id="CreatedBy" value="{{sess.Id}}">
+                <input type="hidden" id="FromDate" value="{{house.contract.inDate}}">
+                <input type="hidden" id="ToDate" value="{{house.contract.nextMonthDate}}">
+                <input type="hidden" id="Type" value="{{house.billType}}">
+            {{/eq}}
+            {{!-- End Hoá đơn hợp đồng mới --}}
+            {{!-- Hoá đơn hàng tháng --}}
+            {{#eq house.billType 2}}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="RentalFee">Tiền phòng</label>
+                            <input type="number" disabled="disabled" id="RentalFee" class="form-control border-primary" value="{{toFixed house.contract.RentalFee 0}}" name="RentalFee">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{#eq house.waterPriceType.Id 1 }}
+                                <label for="WarPrice">Nhập số nước cuối</label> <code>(Số đầu {{house.contract.WarFirstNum}})</code>
+                                <input type="number" value="" id="text_warLastNum" class="form-control border-primary">                            
+                                <input type="hidden" value="" id="WarLastNum" class="form-control border-primary">
+                                <input type="hidden" value="{{house.contract.WarFirstNum}}" id="WarFirstNum" class="form-control border-primary">
+                                <input type="hidden" value="" id="WarPrice" class="form-control border-primary">
+                                <div><code id="text_warNum"></code></div>
+                            {{/eq}}
+                            {{#eq house.waterPriceType.Id 2 }}
+                                <label for="WarPrice">Tiền nước</label> =<code>Số người: {{house.contract.countResident}} x {{house.waterPriceType.Price}}</code>
+                                <input type="number" disabled="disabled" id="WarPrice" value="{{house.contract.waterPrice}}" class="form-control border-primary">
+                            {{/eq}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ElPrice">Nhập số điện cuối</label> <code>(Số đầu {{house.contract.ElFirstNum}})</code>
+                            <input type="number" value="" id="text_elLastNum" class="form-control border-primary">
+                            <input type="hidden" value="" id="ElLastNum" class="form-control border-primary">
+                            <input type="hidden" id="ElFirstNum" value="{{house.contract.ElFirstNum}}" class="form-control border-primary">
+                            <input type="hidden" value="" id="ElPrice" class="form-control border-primary">
+                            <div><code id="text_elNum"></code></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ParkingPrice">Tiền Giữ Xe</label>
+                            (<code>
+                                Ô tô: {{house.contract.countCar}} -
+                                Xe máy: {{house.contract.countMotor}} -
+                                Xe đạp: {{house.contract.countBike}}
+                            </code>)
+                            <input type="number" disabled="disabled" id="ParkingPrice" value="{{house.contract.parkingPrice}}" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="SerCompo">Combo Dịch vụ</label>
+                            <input type="number" disabled="disabled" id="SerCompo" value="{{house.contract.SerCompo}}" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="RedunMoney">Tiền Thừa</label>
+                            <input type="number" disabled="disabled" value={{house.contract.RedunMoney}} id="RedunMoney" class="form-control border-primary">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="InDebtMoney">Tiền Còn Thiếu</label>
+                            <input type="number" disabled="disabled" value={{house.contract.InDebtMoney}} id="InDebtMoney" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="SalePrice">Giảm giá</label> <code id="text_Sale"></code>
+                            <input type="number" id="SalePrice" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="OtherFee">Phí Khác</label> <code id="text_OtherFee"></code>
+                            <input type="number" id="OtherFee" class="form-control border-primary">
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="DateRange" value="30">
+                <input type="hidden" id="RoomBlance" value="{{house.contract.countResident}}">
+                <input type="hidden" id="CreatedBy" value="{{sess.Id}}">
+                <input type="hidden" id="FromDate" value="{{house.contract.nextDayDate}}">
+                <input type="hidden" id="ToDate" value="{{house.contract.nextMonthDate}}">
+                <input type="hidden" id="Type" value="{{house.billType}}">
+            {{/eq}}
+            {{!-- Hoá đơn thanh lý --}}
+            {{#eq house.billType 3}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ToDate">Ngày thanh lý</label>
+                            <input type="date" id="ToDate" class="form-control border-primary" value="" name="ToDate">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="RentalFee">Tiền phòng</label>
+                            <input type="number" disabled="disabled" id="RentalFee" class="form-control border-primary" value="" name="">
+                            <input type="hidden" disabled="disabled" id="HouseFee" class="form-control border-primary" value="{{ house.contract.RentalFee}}" name="HouseFee">
+                            <p><code id="text_Room"></code></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ResiMoney">Đã đóng</label>
+                            <input type="number" disabled="disabled" id="ResiMoney" class="form-control border-primary" value="{{ house.contract.DepositMoney}}" name="ResiMoney">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            {{#eq house.waterPriceType.Id 1 }}
+                                <label for="WarPrice">Nhập số nước cuối</label> <code>(Số đầu {{house.contract.WarFirstNum}})</code>
+                                <input type="number" value="" id="text_warLastNum" class="form-control border-primary">                            
+                                <input type="hidden" value="" id="WarLastNum" class="form-control border-primary">
+                                <input type="hidden" value="{{house.contract.WarFirstNum}}" id="WarFirstNum" class="form-control border-primary">
+                                <input type="hidden" value="" id="WarPrice" class="form-control border-primary">
+                                <div><code id="text_warNum"></code></div>
+                            {{/eq}}
+                            {{#eq house.waterPriceType.Id 2 }}
+                                <label for="WarPrice">Tiền nước</label> =<code>Số người: {{house.contract.countResident}} x {{house.waterPriceType.Price}}</code>
+                                <input type="number" disabled="disabled" id="WarPrice" value="{{house.contract.waterPrice}}" class="form-control border-primary">
+                            {{/eq}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ElPrice">Nhập số điện cuối</label> <code>(Số đầu {{house.contract.ElFirstNum}})</code>
+                            <input type="number" value="" id="text_elLastNum" class="form-control border-primary">
+                            <input type="hidden" value="" id="ElLastNum" class="form-control border-primary">
+                            <input type="hidden" id="ElFirstNum" value="{{house.contract.ElFirstNum}}" class="form-control border-primary">
+                            <input type="hidden" value="" id="ElPrice" class="form-control border-primary">
+                            <div><code id="text_elNum"></code></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ParkingPrice">Tiền Giữ Xe</label>
+                            (<code>
+                                Ô tô: {{house.contract.countCar}} -
+                                Xe máy: {{house.contract.countMotor}} -
+                                Xe đạp: {{house.contract.countBike}}
+                            </code>)
+                            <input type="number" disabled="disabled" id="ParkingPrice" value="{{house.contract.parkingPrice}}" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="SerCompo">Combo Dịch vụ</label>
+                            <input type="number" disabled="disabled" id="SerCompo" value="{{house.contract.SerCompo}}" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="RedunMoney">Tiền Thừa</label>
+                            <input type="number" disabled="disabled" value={{house.contract.RedunMoney}} id="RedunMoney" class="form-control border-primary">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="InDebtMoney">Tiền Còn Thiếu</label>
+                            <input type="number" disabled="disabled" value={{house.contract.InDebtMoney}} id="InDebtMoney" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="SalePrice">Giảm giá</label> <code id="text_Sale"></code>
+                            <input type="number" id="SalePrice" class="form-control border-primary">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="OtherFee">Phí Khác</label> <code id="text_OtherFee"></code>
+                            <input type="number" id="OtherFee" class="form-control border-primary">
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="DateRange" value="">
+                <input type="hidden" id="RoomBlance" value="{{house.contract.countResident}}">
+                <input type="hidden" id="CreatedBy" value="{{sess.Id}}">
+                <input type="hidden" id="FromDate" value="{{house.contract.CheckinDate}}">
+                <input type="hidden" id="fromDate" value="{{house.contract.fromDate}}">
+                <input type="hidden" id="Type" value="{{house.billType}}">
+            {{/eq}}
+            {{!-- End hoá đơn thanh lý --}}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Note">Ghi chú</label>
+                        <input type="text" id="Note" class="form-control border-primary">
+                    </div>
+                </div>
+            </div>
+            <button id="btn_addHouse" type="button" class="btn btn-primary btnSeeBill">
+                <i class="fa fa-eye"></i> Xem
+            </button>
+        </div>                  
+    </form>
+    </div>
+</div>
+
+{{#eq house.billType 1}}
+<script>
+    $("#DepositMoney").on("keyup", function(event){
+        event.preventDefault();
+        let depoMoney = parseInt($("#DepositMoney").val())
+        if(depoMoney>0){
+            $("#text_depoMoney").html(formatNumber(depoMoney.toFixed(0))+` VNĐ`) 
+        }else{
+            $("#text_depoMoney").html("N/A")
+        }
+    })
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+</script>
+{{/eq}}
+{{#eq house.billType 2 }}
+    <script type="text/javascript">
+        //calculate electric
+        let price_el = {{house.contract.electricBill}};
+        let ElFirstNum = {{house.contract.ElFirstNum}};
+        $("#text_elLastNum").on("keyup", function(event) {
+            event.preventDefault();
+            let elLastNum = parseInt($('#text_elLastNum').val());
+            let calNum = elLastNum-ElFirstNum;
+            let total = calNum*price_el;
+            if(total>=0){
+                if(parseInt(calNum) >= 0){
+                    $("#text_elNum").html(`<span>Tiền điện(${price_el}x(${elLastNum} - ${ElFirstNum})) = ` + formatNumber(total.toFixed(0)) + `</span>`);
+                    $("#ElPrice").val(total)
+                    $("#ElLastNum").val(elLastNum)
+                    
+                }else{
+                    $("#text_elNum").html("<span>Số điện cuối phải lớn hơn số đầu</span>")
+                }
+            }
+            else{
+                $("#text_elNum").html("<span>Số điện cuối phải lớn hơn số đầu</span>");
+                $("#ElPrice").val(0)
+                $("#ElLastNum").val(0)
+            }
+        });
+        //Calculate water
+        let price_war = {{house.contract.waterPrice}};
+        let WarFirstNum = {{house.contract.WarFirstNum}};
+        $("#text_warLastNum").on("keyup", function(event) {
+            event.preventDefault();
+            let warLastNum = parseInt($('#text_warLastNum').val());
+            let calNum = warLastNum-WarFirstNum;
+            let total = calNum*price_war;
+            if(total>=0){
+                if(parseInt(calNum) >= 0){
+                    $("#text_warNum").html(`<span>Tiền nước(${price_war}x(${warLastNum} - ${WarFirstNum})) = ` + formatNumber(total.toFixed(0)) + `</span>`);
+                    $("#WarPrice").val(total)
+                    $("#WarLastNum").val(warLastNum)
+                    
+                }else{
+                    $("#text_warNum").html("<span>Số nước cuối phải lớn hơn số đầu</span>")
+                }
+            }
+            else{
+                $("#text_warNum").html("<span>Số nước cuối phải lớn hơn số đầu</span>");
+                $("#WarPrice").val(0)
+                $("#WarLastNum").val(0)
+            }
+        });
+        $("#SalePrice").on("keyup", function(event){
+            event.preventDefault();
+            let saleMoney = parseInt($("#SalePrice").val())
+            if(saleMoney>0){
+                $("#text_Sale").html(formatNumber(saleMoney.toFixed(0))+` VNĐ`) 
+            }else{
+                $("#text_Sale").html("N/A")
+            }
+        })
+        $("#OtherFee").on("keyup", function(event){
+            event.preventDefault();
+            let otherMoney = parseInt($("#OtherFee").val())
+            if(otherMoney>0){
+                $("#text_OtherFee").html(formatNumber(otherMoney.toFixed(0))+` VNĐ`) 
+            }else{
+                $("#text_OtherFee").html("N/A")
+            }
+        })
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+    </script>
+{{/eq}}
+{{#eq house.billType 3 }}
+    <script type="text/javascript">
+        //calculate electric
+        let price_el = {{house.contract.electricBill}}
+        let ElFirstNum = {{house.contract.ElFirstNum}}
+        $("#text_elLastNum").on("keyup", function(event) {
+            event.preventDefault();
+            let elLastNum = parseInt($('#text_elLastNum').val());
+            let calNum = elLastNum-ElFirstNum;
+            let total = calNum*price_el;
+            if(total>=0){
+                if(parseInt(calNum) >= 0){
+                    $("#text_elNum").html(`<span>Tiền điện(${price_el}x(${elLastNum} - ${ElFirstNum})) = ` + formatNumber(total.toFixed(0)) + `</span>`);
+                    $("#ElPrice").val(total)
+                    $("#ElLastNum").val(elLastNum)
+                    
+                }else{
+                    $("#text_elNum").html("<span>Số điện cuối phải lớn hơn số đầu</span>")
+                }
+            }
+            else{
+                $("#text_elNum").html("<span>Số điện cuối phải lớn hơn số đầu</span>");
+                $("#ElPrice").val(0)
+                $("#ElLastNum").val(0)
+            }
+        });
+        //Calculate water
+        let price_war = {{house.contract.waterPrice}}
+        let WarFirstNum = {{house.contract.WarFirstNum}}
+        $("#text_warLastNum").on("keyup", function(event) {
+            event.preventDefault();
+            let warLastNum = parseInt($('#text_warLastNum').val());
+            let calNum = warLastNum-WarFirstNum;
+            let total = calNum*price_war;
+            if(total>=0){
+                if(parseInt(calNum) >= 0){
+                    $("#text_warNum").html(`<span>Tiền nước(${price_war}x(${warLastNum} - ${WarFirstNum})) = ` + formatNumber(total.toFixed(0)) + `</span>`);
+                    $("#WarPrice").val(total)
+                    $("#WarLastNum").val(warLastNum)
+                    
+                }else{
+                    $("#text_warNum").html("<span>Số nước cuối phải lớn hơn số đầu</span>")
+                }
+            }
+            else{
+                $("#text_warNum").html("<span>Số nước cuối phải lớn hơn số đầu</span>");
+                $("#WarPrice").val(0)
+                $("#WarLastNum").val(0)
+            }
+        });
+        $("#SalePrice").on("keyup", function(event){
+            event.preventDefault();
+            let saleMoney = parseInt($("#SalePrice").val())
+            if(saleMoney>0){
+                $("#text_Sale").html(formatNumber(saleMoney.toFixed(0))+` VNĐ`) 
+            }else{
+                $("#text_Sale").html("N/A")
+            }
+        })
+        $("#OtherFee").on("keyup", function(event){
+            event.preventDefault();
+            let otherMoney = parseInt($("#OtherFee").val())
+            if(otherMoney>0){
+                $("#text_OtherFee").html(formatNumber(otherMoney.toFixed(0))+` VNĐ`) 
+            }else{
+                $("#text_OtherFee").html("N/A")
+            }
+        })
+        $("#ToDate").bind("keyup change", function(event) {
+            event.preventDefault();
+            const today = $(this).val();
+            let checkInDate = $('#fromDate').val();
+            let RentalFee = $('#HouseFee').val();
+            // let format = moment('today').format()
+            let endDate = moment(today, "YYYY-MM-DD");
+            let billDate = endDate.diff(checkInDate, 'days');
+            if(billDate>0){
+                let houseFee = billDate*(RentalFee/30)
+                // let formatNum = formatNumber(houseFee.toFixed(0))
+                $('#DateRange').val(billDate)
+                $('#RentalFee').val(houseFee.toFixed(0))
+                $('#text_Room').html(`<span>Tiền phòng = ${billDate} ngày x (${RentalFee} / 30) VNĐ</span>`)
+            }else{
+                $('#DateRange').val()
+                $('#text_Room').html(`<span>Số ngày thuê phải lớn hơn 0</span>`)
+            }
+        })
+            
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+    </script>
+{{/eq}}

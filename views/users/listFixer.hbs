@@ -1,0 +1,120 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+    	<div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+                <h3 class="content-header-title mb-0">Thợ sửa chữa</h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    Trang chủ
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/user/">
+                                    &nbsp;Danh sách thợ
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="content-body">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-colored-form-control">Danh sách thợ</h4>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <table id="table-fixer" class="table table-striped table-bordered dom-jQuery-events">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Họ Tên 
+                                    </th>
+                                   <th>
+                                        Loại thợ
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Điện Thọai
+                                    </th>
+                                    <th>
+                                        Địa Chỉ
+                                    </th>
+                                    <th>
+                                        Ngày Sinh
+                                    </th> 
+                                    <th>
+                                        Hành Động
+                                    </th> 
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+		</div>	
+
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="form-section"><i class="ft-info"></i> Cập nhật thông tin <code><b id="fullNameFixerHeader"></b></code></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form">
+                            <div class="form-body">                                    
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="fullNameFixer">Họ tên</label>
+                                        <input type="text" id="fullNameFixer" class="form-control border-primary" placeholder="Nhập họ tên" name="fullNameFixer"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="FixerEmail">Email</label>
+                                        <input type='email' disabled="disabled" class="form-control border-primary" id="FixerEmail" placeholder="Nhập email" name="FixerEmail" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="addressFixer">Địa chỉ</label>
+                                        <input type='text' class="form-control border-primary" id="addressFixer" placeholder="Nhập địa chỉ" name="addressFixer" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="FixerGroup">Loại thợ</label>
+                                        <input type='text' disabled="disabled" class="form-control border-primary" id="FixerGroup" placeholder="Nhập địa chỉ" name="FixerGroup" />
+                                    </div>
+                                </div>
+                                                                                                     
+                                <h4 class="form-section"><i class="ft-lock"></i> Thông tin tài khoản</h4>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="phone">Số điện thoại</label>
+                                        <input type="number" id="phoneFixer" disabled="disabled" class="form-control border-primary" placeholder="Nhập số điện thoại" name="phoneFixer">
+                                        <span><p class="text-danger text-sm-left pt-1"><code><i>Yêu cầu nhập đúng số điện thoại người dùng. Ví dụ: 0912345678"</code></i></p></span>
+                                    </div>                                             
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary save-fixer-data">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

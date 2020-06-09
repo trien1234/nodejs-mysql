@@ -1,0 +1,263 @@
+<div class="app-content content">
+	<div class="content-wrapper">
+		<div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+                <h3 class="content-header-title mb-0">Cài đặt App</h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    Trang Chủ
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="/cms/setting">
+                                    &nbsp;Cài đặt
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="content-body">
+			<div class="card">
+				<div class="card-content">
+					<div class="card-body">
+						<ul class="nav nav-tabs nav-linetriangle" role="tablist">
+							<li class="nav-item">
+							<a class="nav-link active" id="baseIcon-tab31" data-toggle="tab" aria-controls="tabIcon31" href="#tabIcon31" role="tab" aria-selected="true"><i class="ft-server"></i> Cài Đặt Chung</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link" id="baseIcon-tab32" data-toggle="tab" aria-controls="tabIcon32" href="#tabIcon32" role="tab" aria-selected="false"><i class="ft-clock"></i> Thời Gian</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link disabled"><i class="fa fa-unlink"></i> Updating</a>
+							</li>
+						</ul>
+						<div class="tab-content px-1 pt-1">
+							<div class="tab-pane active" id="tabIcon31" role="tabpanel" aria-labelledby="baseIcon-tab31">
+								<form action="" class="form">
+									<div class="form-body">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="card">
+													<h4 class="form-section"><i class="fa fa-snowflake-o" aria-hidden="true"></i>Thông tin chung</h4>
+													<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Name">Tên Công Ty</label>
+																<input type="text" id="Name" class="form-control border-primary" placeholder="Công ty cổ phần 3SHomes" value="{{setting.Name}}" name="name">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Slogan">Slogan</label>
+																<input type="text" id="Slogan" class="form-control border-primary" placeholder="3SHomes" value="{{setting.Slogan}}" name="Slogan">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Address">Địa Chỉ</label>
+																<input type="address" id="Address" class="form-control border-primary" placeholder="87/3, Nguyễn Sỹ Sách, phường 15, quận Tân Bình, Thành phố Hồ Chí Minh" value="{{setting.Address}}" name="Address">
+															</div>
+														</div>
+													</div>												
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="card">
+													<h4 class="form-section"><i class="ft-sunrise" aria-hidden="true"></i>Liên hệ</h4>
+													<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Email">Email</label>
+																<input type="email" id="Email" class="form-control border-primary" placeholder="3shomesvn@gmail.com" value="{{setting.Email}}" name="Email">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Phone">Điện Thoại</label>
+																<input type="text" id="Phone" class="form-control border-primary" placeholder="0909.453.111" value="{{setting.Phone}}" name="Phone">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Website">Website</label>
+																<input type="text" id="Website" class="form-control border-primary" placeholder="3shomesvn.com" value="{{setting.Website}}" name="Website">
+															</div>
+														</div>												
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="card">
+													<h4 class="form-section"><i class="fa fa-university" aria-hidden="true"></i>Ngân Hàng</h4>
+													<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="BankName">Tên Ngân Hàng</label>
+																<input type="text" id="BankName" class="form-control border-primary" placeholder="Ngân Hàng ACB" value="{{setting.BankName}}" name="BankName">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="BankAccount">Chủ Tài Khoản</label>
+																<input type="text" id="BankAccount" class="form-control border-primary" placeholder="TRƯƠNG CÔNG MINH" value="{{setting.BankAccount}}" name="BankAccount">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="BankNum">Số Tài Khoản</label>
+																<input type="number" id="BankNum" class="form-control border-primary" placeholder="0101010110" value="{{setting.BankNum}}" name="BankNum">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="card">
+													<h4 class="form-section"><i class="ft-globe"></i>FanPage</h4>
+													<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="FaceBook">FaceBook</label>
+																<input type="text" id="FaceBook" class="form-control border-primary" placeholder="facebook.com/3shomesvn" value="{{setting.FanPage.FaceBook}}" name="FaceBook">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Youtube">Youtube</label>
+																<input type="text" id="Youtube" class="form-control border-primary" placeholder="youtube.com/3shomes" value="{{setting.FanPage.Youtube}}" name="Youtube">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="Twitter">Twitter</label>
+																<input type="text" id="Twitter" class="form-control border-primary" placeholder="twitter.com/3shomes" value="{{setting.FanPage.Twitter}}" name="Twitter">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="LinkedIn">LinkedIn</label>
+																<input type="text" id="LinkedIn" class="form-control border-primary" placeholder="linkedin.com/3shomes" value="{{setting.FanPage.LinkedIn}}" name="LinkedIn">
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-actions right">
+										<button type="button" class="btn btn-primary btnSetting">
+											<i class="ft-check-square"></i> Lưu
+										</button>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane" id="tabIcon32" role="tabpanel" aria-labelledby="baseIcon-tab32">
+								<form action="" class="form">
+									<div class="form-body">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="card">
+													<h4 class="form-section"><i class="ft-chrome" aria-hidden="true"></i>Chung</h4>
+													<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="OpenTime">Thời Gian Mở Cửa</label>
+																<input type="text" id="OpenTime" class="form-control border-primary" value="{{setting.OpenTime}}" placeholder="08:00" name="OpenTime">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="CloseTime">Thời Gian Đóng Cửa</label>
+																<input type="text" id="CloseTime" class="form-control border-primary" value="{{setting.CloseTime}}" placeholder="18:00" name="CloseTime">
+															</div>
+														</div>
+													</div>
+																									
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="card">
+													<h4 class="form-section"><i class="ft-airplay" aria-hidden="true"></i>Ứng Dụng</h4>
+													<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="IncidentReceiveTime">Thời Gian Tiếp Nhận Sự Cố (giờ)</label>
+																<input type="number" id="IncidentReceiveTime" class="form-control border-primary" value="{{setting.IncidentReceiveTime}}" placeholder="Ví dụ: 24" name="IncidentReceiveTime">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="IncidentFixingTime">Thời Gian Sửa Sự Cố (ngày)</label>
+																<input type="number" id="IncidentFixingTime" class="form-control border-primary" placeholder="Ví dụ: 3" value="{{setting.IncidentFixingTime}}" name="IncidentFixingTime">
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="ExpriedContractTime">Thời Gian Báo Hết Hạn Hợp Đồng (tháng)</label>
+																<input type="number" id="ExpriedContractTime" class="form-control border-primary" value="{{setting.ExpriedContractTime}}" placeholder="Ví dụ: 1" name="ExpriedContractTime">
+															</div>
+														</div>												
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<div class="form-group">
+																<label for="IncidentFixingScheduleTime">Thời Gian Nhắc Nhở Sửa Chữa (giờ)</label>
+																<input type="number" id="IncidentFixingScheduleTime" class="form-control border-primary" value="{{setting.IncidentFixingScheduleTime}}" placeholder="Ví dụ: 2" name="IncidentFixingScheduleTime">
+															</div>
+														</div>												
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-actions right">
+										<button type="button" class="btn btn-primary btnSetting">
+											<i class="ft-check-square"></i> Lưu
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,218 @@
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="navigation-header">
+                <span>Dashboard</span><i class="ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="General"></i>
+            </li>
+            {{#eq sess.Role.Name 'Manager' }}
+                <li class="nav-item dashboard"><a href="managerDashboard">
+                    <i class="ft-home"></i>
+                    <span class="menu-title" data-i18n="">Trang quản trị</span></a>
+                </li> 
+                >
+            {{/eq}}
+            {{#is sess.Role.Type 1 }}
+            <li class="nav-item dashboard"><a href="dashboard">
+                <i class="ft-home"></i>
+                <span class="menu-title" data-i18n="">Trang quản trị</span></a>
+                <ul class="menu-content">
+                    <li class="dashboard"><a class="menu-item" href="/cms/dashboard">Tổng quan</a>
+                    </li>
+                </ul>
+                <ul class="menu-content">
+                    <li class="incidentDashboard"><a class="menu-item" href="/cms/incidentDashboard">Thống kê sự cố</a>
+                    </li>
+                </ul>
+                <ul class="menu-content">
+                    <li class="billDashboard"><a class="menu-item" href="/cms/billDashboard">Thống kê hóa đơn</a>
+                    </li>
+                </ul>
+                <ul class="menu-content">
+                    <li class="houseDashboard"><a class="menu-item" href="/cms/houseDashboard">Thống kê tình trạng nhà</a>
+                    </li>
+                </ul>
+            </li>   
+   
+            <li class="navigation-header">
+                <span>Nhân sự</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="Nhân sự"></i>
+            </li>
+            <li class="nav-item addUser">
+                <a href="/cms/addUser"><i class="ft-user-plus"></i><span class="menu-title" data-i18n="">Thêm mới</span></a>
+            </li>
+            <li class="nav-item"><a href="#"><i class="ft-award"></i><span class="menu-title" data-i18n="">Quản lý nhà</span></a>
+                <ul class="menu-content">
+                    <li class="listManager"><a class="menu-item" href="/cms/listManager">Danh sách QLN</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="#"><i class="ft-users"></i><span class="menu-title" data-i18n="">Cư dân</span></a>
+                <ul class="menu-content">
+                    <li class="listUser"><a class="menu-item" href="/cms/listUser">Danh sách cư dân</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa fa-user-md"></i><span class="menu-title" data-i18n="">Thợ sửa chữa</span></a>
+                <ul class="menu-content">
+                    <li class="listFixer"><a class="menu-item" href="/cms/listFixer">Danh sách thợ sửa chữa</a>
+                    </li>
+                </ul>
+            </li>
+            {{/is}}
+            <li class="navigation-header">
+                <span>Toà nhà & Căn hộ</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="Toà nhà & Căn hộ"></i>
+            </li>
+            {{!-- {{#eq sess.Role.Name 'AccountingLead' }}
+                <li class="nav-item"><a href="#"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Căn hộ</span></a>
+                    <ul class="menu-content">
+                        <li class="accountingHouse"><a class="menu-item" href="/cms/accountingHouse">Danh sách căn hộ</a>
+                        </li>
+                    </ul>
+                </li>
+            {{/eq}} --}}
+            {{#is sess.Role.Name 'Manager' }}
+                <li class="nav-item"><a href="#"><i class="fa fa-building"></i><span class="menu-title" data-i18n="">Toà nhà</span></a>
+                    <ul class="menu-content">
+                        <li class="managerBuilding"><a class="menu-item" href="/cms/managerBuilding">Danh sách tòa nhà</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Căn hộ</span></a>
+                    <ul class="menu-content">
+                        <li class="managerHouse"><a class="menu-item" href="/cms/managerHouse">Danh sách căn hộ</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#"><i class="fa ft-alert-triangle"></i><span class="menu-title" data-i18n="">Sự cố</span></a>
+                    <ul class="menu-content">
+                        <li class="managerIncident"><a class="menu-item" href="/cms/managerIncident">Danh sách sự cố</a>
+                        </li>
+                    </ul>
+                </li>
+            {{/is}}
+            {{#is sess.Role.Type 1 }}
+            <li class="nav-item"><a href="#"><i class="fa fa-building"></i><span class="menu-title" data-i18n="">Toà nhà</span></a>
+                <ul class="menu-content">
+                    <li class="createBuilding"><a class="menu-item" href="/cms/createBuilding">Thêm mới</a>
+                    </li>
+                    <li class="listBuildingGet"><a class="menu-item" href="/cms/listBuildingGet">Danh sách tòa nhà</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa fa-home"></i><span class="menu-title" data-i18n="">Căn hộ</span></a>
+                <ul class="menu-content">
+                    <li class="createHouse"><a class="menu-item" href="/cms/createHouse">Thêm mới</a>
+                    </li>
+                    <li class="listHouse"><a class="menu-item" href="/cms/listHouse">Danh sách căn hộ</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa fa-file"></i><span class="menu-title" data-i18n="">Hợp đồng</span></a>
+                <ul class="menu-content">
+                    <li class="createContract"><a class="menu-item" href="/cms/createContract">Thêm mới</a>
+                    </li>
+                    <li class="listContract"><a class="menu-item" href="/cms/listContract">Danh sách hợp đồng</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa ft-alert-triangle"></i><span class="menu-title" data-i18n="">Sự cố</span></a>
+                <ul class="menu-content">
+                    <li class="listIncident"><a class="menu-item" href="/cms/listIncident">Danh sách sự cố</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navigation-header">
+                <span>Tin tức</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="Tin tức"></i>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa fa-newspaper-o"></i><span class="menu-title" data-i18n="">Tin tức</span></a>
+                <ul class="menu-content">
+                    <li class="createNews"><a class="menu-item" href="/cms/createNews">Thêm mới</a>
+                    </li>
+                    <li class="listNews"><a class="menu-item" href="/cms/listNews">Danh sách tin tức</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span>Phân quyền</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="Tin tức"></i>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa fa-users"></i><span class="menu-title" data-i18n="">Phân quyền</span></a>
+                <ul class="menu-content">
+                    <li class="createRole"><a class="menu-item" href="/cms/createRole">Thêm mới</a>
+                    </li>
+                    <li class="listRole"><a class="menu-item" href="/cms/listRole">Danh sách quyền</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="navigation-header">
+                <span>Thông báo</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="Tin tức"></i>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa ft-alert-circle"></i><span class="menu-title" data-i18n="">Thông báo</span></a>
+                <ul class="menu-content">
+                    <li class="listNotification"><a class="menu-item" href="/cms/listNotification">Danh thông báo</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navigation-header">
+                <span>Cài Đặt</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+                data-original-title="Tin tức"></i>
+            </li>
+            <li class="nav-item"><a href="#"><i class="fa fa-cogs"></i><span class="menu-title" data-i18n="">Cài đặt</span></a>
+                <ul class="menu-content">
+                    <li class="setting"><a class="menu-item" href="/cms/setting">Cài đặt chung</a>
+                    </li>
+                </ul>
+            </li>
+            {{/is}}
+            <li>
+                <div class="card">
+                    <div class="card-body bg-primary bg-darken-2 border-white">
+                        <div class="animated-weather-icons text-center float-left">
+                            <img src="{{weather.current.imageUrl}}" alt="">
+                            
+                        </div>
+                        <div class="weather-details text-center">
+                            <span class="block white darken-2">{{weather.current.skytext}}</span>
+                            <span class="block white darken-4">{{weather.current.temperature}}°C</span>
+                            <span class="text-bold-500 white darken-4">{{weather.location.name}}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer p-0 border-0 bg-dark">
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="details-left float-left">
+                                                <span class="font-small-1 grey text-bold-600 block">GIÓ</span>
+                                                <span class="text-bold-500">&lt;{{weather.current.windspeed}}</span>
+                                            </div>
+                                            <div class="float-right align-middle">
+                                                <i class="me-wind blue lighten-1 font-large-1"></i>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="details-left float-left">
+                                                <span class="font-small-1 grey text-bold-600 block">NĐTT</span>
+                                                <span class="text-bold-500">{{weather.current.feelslike}}°C</span>
+                                            </div>
+                                            <div class="float-right align-middle">
+                                                <i class="me-thermometer blue lighten-1 font-large-1"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>               
+            </li>
+        </ul> 
+    </div>
+</div>

@@ -1,0 +1,1 @@
+Folder is purposedly kept empty to store files that are specific to an environment

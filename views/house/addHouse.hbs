@@ -1,0 +1,131 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-10 mb-2">
+            <h3 class="content-header-title mb-0">Căn hộ</h3>
+            <div class="row breadcrumbs-top">
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/">
+                                Admin
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/cms/createHouse">
+                                &nbsp;căn hộ
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        </div>
+    <form class="form" id="form_buidling">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="BuildingId">Tòa nhà</label>
+                        <select class="form-control" name="BuildingId"  id="BuildingId">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ManagerId">Người quản lý tòa nhà</label>
+                        <select class="form-control" name="ManagerId"  id="ManagerId">
+                        </select>
+                    </div>
+                </div>                                                           
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Name">Tên căn hộ</label>
+                        <input type="text" id="Name" class="form-control border-primary" name="Name" required="required">
+                    </div>
+                </div> 
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Code">Mã</label>
+                        <input type="text" id="Code" class="form-control border-primary" name="Code" required="required">
+                    </div>
+                </div>
+                                                                                                              
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Note">Ghi chú</label>
+                        <input type="text" id="Note" class="form-control border-primary" name="Note">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Status">Trạng thái</label>
+                        <select name="Status" class="form-control border-primary" id="Status">
+                            {{#each houseStatus}}
+                                <option value="{{Code}}">{{Description}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Funiture">Nội thất</label>
+                        <input type="text" id="Funiture" class="form-control border-primary" name="Funiture">
+                    </div>
+                </div>  
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Block">Block</label>
+                        <input type="text" id="Block" class="form-control border-primary" name="Block" required="required">
+                    </div>
+                </div>                                      
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Floor">Tầng</label><!-- check trung-->
+                        <input type="number" id="Floor" class="form-control border-primary" name="Floor" required="required">
+                    </div>
+                </div> 
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="RentalFee">Giá thuê</label>
+                        <input type="number" id="RentalFee" class="form-control border-primary" name="RentalFee" >
+                    </div>
+                </div>                                                                                  
+            </div> 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ChecknDate">Ngày Vào</label>
+                        <input type="date" id="CheckinDate" class="form-control border-primary"></input>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="CheckoutDate">Ngày Ra</label>
+                        <input type="date" id="CheckoutDate" class="form-control border-primary"></input>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Block">Ngày nộp hóa đơn</label>
+                        <select name="BillDateRange" class="form-control border-primary" id="BillDateRange">
+                            <option value="{{CONSTANT.FIRST}}">Ngày 1 đầu tháng</option>
+                            <option value="{{CONSTANT.SECOND}}">Ngày 5 đầu tháng</option>
+                        </select>
+                    </div>
+                </div>
+            </div>                                                                                
+            <button id="btn_addHouse" type="button" class="btn btn-primary btnSaveHouse">
+                <i class="fa fa-check-square"></i> Lưu
+            </button>
+        </div>                  
+    </form>
+    </div>
+</div>

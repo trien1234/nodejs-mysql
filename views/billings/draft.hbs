@@ -1,0 +1,407 @@
+<style>
+    .form-body{
+        border: 1px solid #a09e9e;
+        padding: 25px;
+    }
+    .text-sm{
+        font-size: 12px;
+    }
+    .app-content{
+    	background: rgba(140, 140, 140, 0.02)
+    }
+    .text_h5{
+    	font-size: 20px;
+    	font-weight: 600;
+    	color: #036969;
+    	font-family: Tahoma !important;
+    }
+    .text_h2{
+    	font-size: 27px;
+    	font-weight: 600;
+    	color: #960303;
+    	font-family: Tahoma !important;
+    	text-transform: uppercase;
+    }
+    .text-custom{
+    	font-size: 15px;
+    	font-weight: 600;
+    	color: #036969;
+    	font-family: Tahoma !important;
+    }
+    @media print {
+	  	body * {
+	    	visibility: hidden;
+	  	}
+	  	#form_billing, #form_billing * {
+	    	visibility: visible;
+	  	}
+	  	#form_billing {
+	    	position: absolute;
+	    	left: 0;
+	    	top: 0;
+	  	}
+	}
+	.table th, .table td {
+		padding: 6px 16px !important;
+	}
+	ol {
+		margin-bottom: 0px !important
+	}
+	small {
+		font-size: 13px !important;
+	}
+</style>
+<div class="app-content content">
+    <div class="content-wrapper">
+    	<form class="form" id="form_billing">
+	        <div class="row mb-1">
+	        	<div class="col-md-4">
+	        		<img class="float-right p-0" height="80" src="/public/images/logo.png" alt="3SHome">
+	        	</div>
+	            <div class="col-md-8 float-left p-0">
+	                <h5 class="text_h5">Công ty cổ phần BĐS 3SHomes</h5>
+	                <span class="text-sm">
+	                    <b>Địa chỉ: </b><i>87/3, Nguyễn Sỹ Sách, phường 15, Tân Bình, Tp.HCM</i></br>
+	                    <b>Email: </b><i>3shomesvn@gmail.com</i></br>
+	                    <b>Hotline: </b><i>0909.543.111</i></br>
+	                </span>
+	            </div>
+	        </div>
+	        <div class="row">
+	        	<div class="col-md-12 text-center">
+	        		<h2 class="text_h2">Hoá Đơn 
+	        			{{bill.type}}
+	        		</h2>
+	        	</div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-12 text-center mb-1">
+	                <span class="text-sm"><b>Ghi chú:</b> <i>Tiền phòng tính từ ngày {{bill.FromDate}} đến {{bill.ToDate}}</i></span>
+	            </div> 
+	        </div>
+	        <div class="form-body">
+	        	<div class="row mb-2">
+	        		<div class="col-md-12">
+	        			<b>Mã Hoá Đơn:</b> {{bill.Code}}
+	        		</div>
+	        		<div class="col-md-12">
+	        			<b>Mã Phòng:</b> {{bill.House.Code}}
+	        		</div>
+	        		<div class="col-md-12">
+	        			<b>Địa chỉ:</b> Toà nhà {{bill.House.Building.Name}}, {{bill.House.Building.Address}}
+	        		</div>
+	        		<div class="col-md-6">
+	        			<b>Khách Hàng: </b><i>{{bill.Resident.FullName}}</i></br>
+	        		</div>
+	        		<div class="col-md-6">
+	        			<b>TEL: </b><i>{{bill.Resident.Tel}}</i></br>
+	        		</div>
+	        	</div>
+	        	<div class="row mb-2">
+	        		<table class="table table-bordered">
+	        			<thead>
+	        				<tr>
+	        					<th width="1">STT</th>
+	        					<th>Dịch vụ</th>
+	        					<th>Đơn giá(VNĐ)</th>
+	        					<th>Thành tiền</th>
+	        				</tr>
+	        			</thead>
+	        			<tbody>
+	        				<tr>
+	        					<td>
+	        						1
+	        					</td>
+	        					<td>
+	        						<b>Tiền cọc</b></br>
+	        					</td>
+	        					<td>
+	        						
+	        					</td>
+	        					<td>{{bill.DepositMoney}} VNĐ</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						2
+	        					</td>
+	        					<td>
+	        						<b>Thuê phòng(ngày)</b></br>
+	        						<small>- Số ngày: {{bill.DateRange}}</small>
+	        					</td>
+	        					<td>
+	        						<small>
+	        							{{bill.RentalFee}}/Tháng
+	        						</small>
+	        					</td>
+	        					<td>
+	        						{{toFixed bill.HouseFee 0}} VNĐ
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						3
+	        					</td>
+	        					<td>
+	        						<b>Điện</b></br>
+	        						<small>
+	        							<ol>
+	        								<li>Số cũ: {{bill.ElFirstNum}} </li>
+	        								<li>Số mới: {{bill.ElLastNum}}</li>
+	        								<li>Tiêu thụ: {{minus bill.ElLastNum bill.ElFirstNum}}</li>
+	        							</ol>
+	        						</small>
+	        					</td>
+	        					<td>
+	        						<small>
+	        							{{bill.Contract.ElectricBill}}/kwh
+	        						</small>
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+			        					{{bill.ElPrice }} VNĐ
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+			        					{{bill.ElPrice }} VNĐ
+	        						{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						4
+	        					</td>
+	        					<td>
+	        						<b>Nước</b></br>
+	        						{{#eq bill.Contract.WaterPriceType.Id 1 }}
+	        							<small>
+		        							<ol>
+		        								<li>Số cũ: {{bill.WarFirstNum}}</li>
+		        								<li>Số mới: {{bill.WarLastNum}}</li>
+		        								<li>Tiêu thụ: {{minus bill.WarLastNum bill.WarFirstNum}}</li>
+		        							</ol>
+		        						</small>
+	        						{{else}}
+	        							<small>
+	        								Số người: {{toFixed bill.RoomBlance 0}}
+	        							</small>
+	        						{{/eq}}	        						
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Contract.WaterPriceType.Id 1 }}
+	        							<small>
+		        							{{bill.Contract.WaterPriceType.Price}}/Khối
+		        						</small>
+	        						{{else}}
+	        							<small>
+	        								{{bill.Contract.WaterPriceType.Price}}/Người 
+	        							</small>
+	        						{{/eq}}
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+		        						{{bill.WarPrice}} VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+		        						{{bill.WarPrice}} VNĐ	
+	        						{{/eq}}
+	        					</td>
+	        				</tr>        				
+	        				<tr>
+	        					<td>
+	        						5
+	        					</td>
+	        					<td>
+	        						<b>Giữ xe</b></br>
+	        						<small>
+	        							<ol>        								
+	        								<li>Ô tô: {{bill.Contract.CountCar}}</li>
+	        								<li>Xe máy: {{bill.Contract.CountMotor}}</li>
+	        								<li>Xe đạp: {{bill.Contract.CountBike}}</li>
+	        							</ol>
+	        						</small>
+	        					</td>
+	        					<td>
+	        						<b>Phí giữ xe</b></br>
+	        						<small>
+	        							<ul>        								
+	        								<li>{{bill.Contract.CarParkPrice}}/Ô tô</li>
+	        								<li>{{bill.Contract.MotobikeParkPrice}}/Xe</li>
+	        								<li>{{bill.Contract.BikeParkPrice}}/Xe</li>
+	        							</ul>
+	        						</small>
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+			        					{{bill.ParkingPrice}} VNĐ
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+			        					{{bill.ParkingPrice}} VNĐ
+	        						{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						6
+	        					</td>
+	        					<td>
+	        						<b>Combo Dịch vụ</b>
+	        					</td>
+	        					<td>
+	        						
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+			        					{{bill.SerCompo}} VNĐ
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+			        					{{bill.SerCompo}} VNĐ
+	        						{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						7
+	        					</td>
+	        					<td>
+	        						<b>Còn thiếu</b>
+	        					</td>
+	        					<td>
+	        						
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+			        					{{bill.InDebtMoney}} VNĐ
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+			        					{{bill.InDebtMoney}} VNĐ
+	        						{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						8
+	        					</td>
+	        					<td>
+	        						<b>Còn thừa</b>
+	        					</td>
+	        					<td>
+	        						
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+			        					{{bill.RedunMoney}} VNĐ
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+			        					{{bill.RedunMoney}} VNĐ
+	        						{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						9
+	        					</td>
+	        					<td>
+	        						<b>Giảm giá</b>
+	        					</td>
+	        					<td>
+	        						
+	        					</td>
+	        					<td>
+	        						{{#eq bill.Type 1 }}
+	        							0 VNĐ	
+	        						{{/eq}}
+	        						{{#eq bill.Type 2 }}
+			        					{{bill.SalePrice}} VNĐ
+	        						{{/eq}}
+	        						{{#eq bill.Type 3 }}
+			        					{{bill.SalePrice}} VNĐ
+	        						{{/eq}}
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						10
+	        					</td>
+	        					<td colspan="2" class="text-center">
+	        						<h2 class="text_h5">Tổng cộng</h2>
+	        					</td>
+	        					<td>
+	        						<span id="TotalFee">{{bill.total }}</span> VNĐ	
+	        					</td>
+	        				</tr>
+	        				{{#eq bill.Type 3}}
+	        				<tr>
+	        					<td>
+	        						10
+	        					</td>
+	        					<td colspan="2" class="text-center">
+	        						<h2 class="text-custom">Đã đóng</h2>
+	        					</td>
+	        					<td>
+	        						{{bill.ResiMoney}} VNĐ
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td>
+	        						11
+	        					</td>
+	        					<td colspan="2" class="text-center">
+	        						<h2 class="text-custom">Còn lại</h2>
+	        					</td>
+	        					<td>
+	        						{{minus bill.ResiMoney bill.total}} VNĐ
+	        					</td>
+	        				</tr>
+	        				{{/eq}}
+	        			</tbody>
+	        		</table>
+	    			<div class="col-md-6">
+	    				<small>
+	        				<b>Lưu ý:</b><i> {{bill.Note}}</i>
+	        			</small>
+	    			</div>
+	    			<div class="col-md-6">
+	    				<span>
+	        				<b>THỜI HẠN NỘP TIỀN:</b> Quý khách vui lòng nộp trước ngày <i>{{bill.ToDate}}</i>
+	        			</span>
+	    			</div>
+	        	</div>
+	        </div>                  
+    	</form>
+    	<div class="row">
+	    	<div class="col-md-12 mt-2">
+			    <a href="/cms/accountingCreateBilling/{{bill.House.Id}}?type={{bill.Type}}" onclick="return confirm('Bạn có chắc chắn?');" class="btn btn-md btn-danger btnCancelBill"><i class="fa fa-undo"></i> Trở lại</a>
+			    <button id="{{bill.Id}}" type="button" class="btn btn-md btn-primary btnCreateBill">
+			        <i class="ft-check-square"></i> Tạo
+			    </button>
+			    <button id="" type="button" onclick="myFunction()" class="btn btn-md btn-success btnPrintBill">
+			        <i class="fa fa-save"></i> In
+			    </button>
+	    	</div>
+	    </div>
+    </div>
+    
+</div>
+
+<script>
+	function myFunction() {
+  		window.print();
+	}
+</script>
